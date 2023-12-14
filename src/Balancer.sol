@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Import Balancer contracts as needed
-import "balancer-v2-monorepo/pkg/interfaces/contracts/vault/IVault.sol";
+import "./IVault.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
 
 contract Balancer {
+    uint8 internal constant BASE_10_MAX_EXPONENT = 50;
+
     // Assuming IVault is the interface for interacting with Balancer's Vault,
     // replace with actual interface or contract you need.
     IVault private balancerVault;
+
+    error Balancer_AssetDecimalsOutOfBounds(address asset_, uint8 decimals_, uint8 maxDecimals_);
 
     // Constructor to set Balancer Vault address
     constructor(address _balancerVault) {
@@ -16,9 +20,21 @@ contract Balancer {
 
     // Example function to get the balance of a Balancer pool
     function getPoolBalance(bytes32 poolId) public view returns
-      (IERC20[] memory tokens, uint256[] memory balances, uint256 lastChangeBlock) {
+      (address[] memory tokens, uint256[] memory balances, uint256 lastChangeBlock) {
         // Assuming the Balancer Vault has a function to get pool balances
         // Replace with actual function calls and logic based on your needs
        return balancerVault.getPoolTokens(poolId);
+    }
+
+    function _convertERC20Decimals(
+        uint256 value_,
+        address token_,
+        uint8 outputDecimals_
+    ) internal view returns (uint256) {
+        uint8 tokenDecimals = ERC20(token_).decimals();
+        if (tokenDecimals > BASE_10_MAX_EXPONENT)
+            revert Balancer_AssetDecimalsOutOfBounds(token_, tokenDecimals, BASE_10_MAX_EXPONENT);
+
+        return value_.mulDiv(10 ** outputDecimals_, 10 ** tokenDecimals);
     }
 }
