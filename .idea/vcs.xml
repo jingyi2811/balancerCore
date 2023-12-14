@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/balancer-v2-monorepo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/balancer-v2-monorepo/pvt/lib/forge-std" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/balancer-v2-monorepo/pvt/lib/forge-std/lib/ds-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/forge-std" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/forge-std/lib/ds-test" vcs="Git" />
   </component>
 </project>
