@@ -25,16 +25,4 @@ contract Balancer {
         // Replace with actual function calls and logic based on your needs
        return balancerVault.getPoolTokens(poolId);
     }
-
-    function _convertERC20Decimals(
-        uint256 value_,
-        address token_,
-        uint8 outputDecimals_
-    ) internal view returns (uint256) {
-        uint8 tokenDecimals = ERC20(token_).decimals();
-        if (tokenDecimals > BASE_10_MAX_EXPONENT)
-            revert Balancer_AssetDecimalsOutOfBounds(token_, tokenDecimals, BASE_10_MAX_EXPONENT);
-
-        return value_.mulDiv(10 ** outputDecimals_, 10 ** tokenDecimals);
-    }
 }
