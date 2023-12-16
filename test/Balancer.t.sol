@@ -45,15 +45,24 @@ contract BalancerTest is Test {
     }
 
     function testBalancerStablePoolBalance() public {
-        bytes32 addr = 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063;
+//        bytes32 addr = 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063;
+//
+//        // Balancer 80%, Weth 20%
+//        (address[] memory tokens, uint256[] memory balances, uint256 lastChangeBlock) = balancer.getPoolBalance(addr);
+//
+//        console.log(tokens.length); // 3
 
-        // Balancer 80%, Weth 20%
-        (address[] memory tokens, uint256[] memory balances, uint256 lastChangeBlock) = balancer.getPoolBalance(addr);
+        {
+            IStablePool pool = IStablePool(address(0x06Df3b2bbB68adc8B0e302443692037ED9f91b42));
+            console.logBytes32(pool.getPoolId()); // 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063
+            //uint[] memory scalingFactor = pool.getScalingFactors();
+        }
 
-        console.log(tokens.length); // 3
-
-        IStablePool pool = IStablePool(address(0x06Df3b2bbB68adc8B0e302443692037ED9f91b42));
-        uint[] memory scalingFactor = pool.getScalingFactors();
+        {
+            IStablePool pool = IStablePool(address(0xFf4ce5AAAb5a627bf82f4A571AB1cE94Aa365eA6));
+            console.logBytes32(pool.getPoolId());
+            uint[] memory scalingFactor = pool.getScalingFactors();
+        }
 
         //console.log(scalingFactor.length);
 
