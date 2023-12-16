@@ -55,12 +55,14 @@ contract BalancerTest is Test {
         {
             IStablePool pool = IStablePool(address(0x06Df3b2bbB68adc8B0e302443692037ED9f91b42));
             console.logBytes32(pool.getPoolId()); // 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063
+            //https://app.balancer.fi/#/ethereum/pool/0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063
             //uint[] memory scalingFactor = pool.getScalingFactors();
         }
 
         {
             IStablePool pool = IStablePool(address(0xFf4ce5AAAb5a627bf82f4A571AB1cE94Aa365eA6));
-            console.logBytes32(pool.getPoolId());
+            console.logBytes32(pool.getPoolId()); // 0xff4ce5aaab5a627bf82f4a571ab1ce94aa365ea6000200000000000000000426
+            //https://app.balancer.fi/#/ethereum/pool/0xff4ce5aaab5a627bf82f4a571ab1ce94aa365ea6000200000000000000000426
             uint[] memory scalingFactor = pool.getScalingFactors();
         }
 
