@@ -30,7 +30,7 @@ contract BalancerTest is Test {
 //
 //        console.log(lastChangeBlock);
 
-        IWeightedPool pool = IWeightedPool(address(0x6f0ed6f346007563D3266DE350d174a831bDE0ca));
+        IWeightedPool pool = IWeightedPool(address(0x08775ccb6674d6bDCeB0797C364C2653ED84F384));
 
         // Get pool ID
         uint[] memory x = pool.getNormalizedWeights();
@@ -45,54 +45,31 @@ contract BalancerTest is Test {
     }
 
     function testBalancerStablePoolBalance() public {
-//        bytes32 addr = 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063;
-//
-//        // Balancer 80%, Weth 20%
-//        (address[] memory tokens, uint256[] memory balances, uint256 lastChangeBlock) = balancer.getPoolBalance(addr);
-//
-//        console.log(tokens.length); // 3
 
-        {
-            IStablePool pool = IStablePool(address(0x06Df3b2bbB68adc8B0e302443692037ED9f91b42));
-            console.logBytes32(pool.getPoolId()); // 0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063
-            //https://app.balancer.fi/#/ethereum/pool/0x06df3b2bbb68adc8b0e302443692037ed9f91b42000000000000000000000063
-            //uint[] memory scalingFactor = pool.getScalingFactors();
+        address[13] memory addresses = [
+        0x3dd0843A028C86e0b760b1A76929d1C5Ef93a2dd,
+        0xFf4ce5AAAb5a627bf82f4A571AB1cE94Aa365eA6,
+        0xFeadd389a5c427952D8fdb8057D6C8ba1156cC56,
+        0x2d011aDf89f0576C9B722c28269FcB5D50C2d179,
+        0x06Df3b2bbB68adc8B0e302443692037ED9f91b42,
+        0xf3AeB3aBbA741f0EEcE8a1B1D2F11b85899951CB,
+        0x616D4D131F1147aC3B3C3CC752BAB8613395B2bB,
+        0x178E029173417b1F9C8bC16DCeC6f697bC323746,
+        0x961764651931941F23cea5bAB246607dC19ef224,
+        0x384F67aA430376efc4f8987eaBf7F3f84eB9EA5d,
+        0xF93579002DBE8046c43FEfE86ec78b1112247BB8,
+        0x13F2f70A951FB99d48ede6E25B0bdF06914db33F,
+        0xb8b6fB4474d3Bf3b878a9dfC36115792358Db096
+
+        ];
+
+        for (uint i = 0; i < addresses.length; i++) {
+            IStablePool pool = IStablePool(addresses[i]);
+
+            try pool.getLastInvariant() returns (uint a, uint b) {
+            } catch {
+                console.logBytes32(pool.getPoolId());
+            }
         }
-
-        {
-            IStablePool pool = IStablePool(address(0xFf4ce5AAAb5a627bf82f4A571AB1cE94Aa365eA6));
-            console.logBytes32(pool.getPoolId()); // 0xff4ce5aaab5a627bf82f4a571ab1ce94aa365ea6000200000000000000000426
-            //https://app.balancer.fi/#/ethereum/pool/0xff4ce5aaab5a627bf82f4a571ab1ce94aa365ea6000200000000000000000426
-            uint[] memory scalingFactor = pool.getScalingFactors();
-        }
-
-        //console.log(scalingFactor.length);
-
-        //        console.log(address(tokens[0])); // WsETH
-//        console.log(address(tokens[1]));
-//        console.log(address(tokens[2]));
-//        console.log(address(tokens[3]));
-
-
-        //        assertEq(address(tokens[0]), 0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0); // WsETH
-//        assertEq(address(tokens[1]), 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2); // IWETH
-
-//        console.log(balances[0]);
-//        console.log(balances[1]);
-//
-//        console.log(lastChangeBlock);
-//
-//        IWeightedPool pool = IWeightedPool(address(0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56));
-//
-//        // Get pool ID
-//        uint[] memory x = pool.getNormalizedWeights();
-//        console.log(x.length);
-//        console.log(x[0]);
-//        console.log(x[1]);
-//
-//        console.log(pool.getInvariant());
-//        console.log(pool.totalSupply());
-//        console.logBytes32(pool.getPoolId());
-//        console.log(pool.decimals());
     }
 }
