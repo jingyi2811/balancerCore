@@ -427,10 +427,13 @@ contract weightPoolTest is Test {
         for (uint i = 0; i < addresses.length; i++) {
             IWeightedPool pool = IWeightedPool(addresses[i]);
 
-            try pool.getInvariant() returns (uint256 weights_) {
-            } catch {
-                console.logBytes32(pool.getPoolId());
-            }
+//            try pool.getInvariant() returns (uint256 weights_) {
+//            } catch {
+//                console.logBytes32(pool.getPoolId());
+//                console.log(pool.decimals());
+//            }
+
+            console.log(pool.decimals());
         }
     }
 }

@@ -2,3 +2,4 @@
 balancer-v2-monorepo/=lib/balancer-v2-monorepo/
 ds-test/=lib/forge-std/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
+@uniswap/=lib/

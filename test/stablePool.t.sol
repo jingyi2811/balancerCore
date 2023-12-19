@@ -37,10 +37,12 @@ contract StablePoolTest is Test {
         for (uint i = 0; i < addresses.length; i++) {
             IStablePool pool = IStablePool(addresses[i]);
 
-            try pool.getScalingFactors() returns (uint[] memory a) {
-            } catch {
-                console.logBytes32(pool.getPoolId());
-            }
+//            try pool.getScalingFactors() returns (uint[] memory a) {
+//            } catch {
+//                console.logBytes32(pool.getPoolId());
+//            }
+
+            console.log(pool.decimals());
         }
     }
 }
